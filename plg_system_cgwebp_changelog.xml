@@ -1,0 +1,14 @@
+<changelogs>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
+		<version>1.0.0</version>
+        <note>
+            <item>Update : 13/04/2024</item>
+        </note>
+        <addition>
+            <item>New plugin from DJ WebP</item>
+        </addition>
+	</changelog>
+</changelogs>
