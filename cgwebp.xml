@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <description>PLG_SYSTEM_CGWEBP_DESCRIPTION</description>
     <namespace path="src">Conseilgouz\Plugin\System\Cgwebp</namespace>
+    <scriptfile>script.cgwebp.php</scriptfile>
     <files>
 		<folder plugin="cgwebp">services</folder>
 		<folder>src</folder>
@@ -24,11 +25,6 @@
 		<folder>js</folder>
 		<filename>index.html</filename>
 	</media>
-    
-	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_system_cgwebp_j4/master/plg_system_cgwebp_changelog.xml</changelogurl>
-    <updateservers>
-        <server type="extension" name="cgchglog">https://raw.githubusercontent.com/conseilgouz/updates_github/master/plg_system_cgwebp_update.xml</server>
-    </updateservers>
     <config>
         <fields name="params">
             <fieldset name="basic" addfieldprefix="Conseilgouz\Plugin\System\Cgwebp\Field">
@@ -57,5 +53,8 @@
             </fieldset>
         </fields>
     </config>
-    <scriptfile>script.cgwebp.php</scriptfile>
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_system_cgwebp_j4/master/plg_system_cgwebp_changelog.xml</changelogurl>
+    <updateservers>
+        <server type="extension" name="cgchglog">https://raw.githubusercontent.com/conseilgouz/updates_github/master/plg_system_cgwebp_update.xml</server>
+    </updateservers>
 </extension>
