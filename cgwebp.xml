@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="plugin" version="4.0" group="system" method="upgrade">
+    <name>System - CG Webp</name>
+    <creationDate>2024-04-12</creationDate>
+    <author>ConseilGouz</author>
+	<copyright>Copyright (C) 2024 ConseilGouz. All rights reserved.</copyright>
+	<license>GNU/GPL</license>
+    <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+    <authorUrl>https://www.conseilgouz.com</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_SYSTEM_CGWEBP_DESCRIPTION</description>
+    <namespace path="src">Conseilgouz\Plugin\System\Cgwebp</namespace>
+    <files>
+		<folder plugin="cgwebp">services</folder>
+		<folder>src</folder>
+        <folder>layouts</folder>
+        <filename>filters.xml</filename>
+        <filename>index.html</filename>
+    </files>
+	<languages>
+		<language tag="en-GB">language/en-GB/plg_system_cgwebp.sys.ini</language>
+	</languages>
+	<media destination="plg_system_cgwebp" folder="media">
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+    
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_system_cgwebp_j4/master/plg_system_cgwebp_changelog.xml</changelogurl>
+    <updateservers>
+        <server type="extension" name="cgchglog">https://raw.githubusercontent.com/conseilgouz/updates_github/master/plg_system_cgwebp_update.xml</server>
+    </updateservers>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldprefix="Conseilgouz\Plugin\System\Cgwebp\Field">
+				<field
+				name="filters" type="subform" icon="list"
+                label="PLG_SYSTEM_CGWEBP_FILTERS" multiple="true"
+                default=""
+                formsource="plugins/system/cgwebp/filters.xml"
+                />
+                <field
+                        name="excludedMenus"
+                        type="cgmenuitems"
+                        label="PLG_SYSTEM_CGWEBP_EXCLUDED_MENUS"
+                        multiple="true"
+                        layout="joomla.form.field.list-fancy-select"
+                        filter="intarray"
+                />
+                <field name="webp_support" type="webpsupport"/>
+                <field name="debug" type="radio" default="0" label="PLG_SYSTEM_CGWEBP_DEBUG"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="mode" type="hidden" default="" label="PLG_SYSTEM_CGWEBP_MODE">
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+    <scriptfile>script.cgwebp.php</scriptfile>
+</extension>
