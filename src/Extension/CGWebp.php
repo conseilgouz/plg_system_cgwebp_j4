@@ -176,9 +176,11 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
         if(is_file($imgPath)) {
             if (!isset($this->_webps[$imgHash])) {
-
-                // $newImagePath = $imgInfo['dirname'] . '/';
-                $newImagePath = JPATH_ROOT .'/media/plg_system_cgwebp/'.pathinfo($image)['dirname'].'/';
+                if ($this->params->get('storage','same') == "same") { // same as original image
+                    $newImagePath = $imgInfo['dirname'] . '/';
+                } else { // in media/plg_system_webp directory
+                    $newImagePath = JPATH_ROOT .'/media/plg_system_cgwebp/'.pathinfo($image)['dirname'].'/';
+                }
                 $newImage = $newImagePath . $imgInfo['filename'] . '.webp';
 
                 // Delete webp image if is older than image
