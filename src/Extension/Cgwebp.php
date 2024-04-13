@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.0
+ * @version		1.0.2
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
