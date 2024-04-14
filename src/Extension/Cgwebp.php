@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.2
+ * @version		1.0.3
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -17,6 +17,7 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
+use Joomla\CMS\Log\Log;
 use Conseilgouz\Plugin\System\Cgwebp\Helper\CgwebpHelper;
 
 final class Cgwebp extends CMSPlugin implements SubscriberInterface
@@ -176,7 +177,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
         if(is_file($imgPath)) {
             if (!isset($this->_webps[$imgHash])) {
-                if ($this->params->get('storage','same') == "same") { // same as original image
+                if ($this->params->get('storage', 'same') == "same") { // same as original image
                     $newImagePath = $imgInfo['dirname'] . '/';
                 } else { // in media/plg_system_webp directory
                     $newImagePath = JPATH_ROOT .'/media/plg_system_cgwebp/'.pathinfo($image)['dirname'].'/';
@@ -193,21 +194,26 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 }
                 if (!is_file($newImage)) {
                     if (is_file($imgPath)) {
-                        switch (strtolower($imgInfo['extension'])) {
-                            case 'png':
-                                $img = imagecreatefrompng($imgPath);
-                                break;
-                            case 'jpg':
-                            case 'jpeg':
-                                $img = imagecreatefromjpeg($imgPath);
+                        try {
+                            switch (strtolower($imgInfo['extension'])) {
+                                case 'png':
+                                    $img = imagecreatefrompng($imgPath);
+                                    break;
+                                case 'jpg':
+                                case 'jpeg':
+                                    $img = imagecreatefromjpeg($imgPath);
+                            }
+                            if (!is_dir($newImagePath)) {
+                                Folder::create($newImagePath);
+                            }
+                            imagepalettetotruecolor($img);
+                            imagealphablending($img, true);
+                            imagesavealpha($img, true);
+                            imagewebp($img, $newImage, $quality);
+                        } catch (\Throwable $throwable) {
+                            Log::add('unable to enable plugin bday', Log::ERROR, 'jerror');
+                            return false;
                         }
-                        if (!is_dir($newImagePath)) {
-                            Folder::create($newImagePath);
-                        }
-                        imagepalettetotruecolor($img);
-                        imagealphablending($img, true);
-                        imagesavealpha($img, true);
-                        imagewebp($img, $newImage, $quality);
                     }
                 }
                 $newFile = str_replace(JPATH_ROOT . '/', "", $newImage);
@@ -216,5 +222,4 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             return $this->_webps[$imgHash];
         }
     }
-
 }
