@@ -8,6 +8,18 @@
             <item>Update : 14/04/2024</item>
         </note>
         <fix>
+            <item>Add .htaccess in media directory.</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
+		<version>1.0.3</version>
+        <note>
+            <item>Update : 14/04/2024</item>
+        </note>
+        <fix>
             <item>Handle image exceptions</item>
         </fix>
 	</changelog>
