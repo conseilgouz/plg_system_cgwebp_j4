@@ -7,7 +7,7 @@ When a page is displayed, all images from defined formats are converted to WEBP 
 
 When images are updated, their webp images is updated as well.
 
-Storing created images in media directory has the double advantages to easily locate those images and not save double save them (by making media/plg_system_cgwebp an exception in Akeeba Backup)
+Storing created images in media directory has the double advantages to easily locate those images and not to double save them (by making media/plg_system_cgwebp an exception in Akeeba Backup)
 
 On your pages, webp images will be displayed, replacing original images.
 
