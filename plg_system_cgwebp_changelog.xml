@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.0.6</version>
+        <note>
+            <item>Update : 15/04/2024</item>
+        </note>
+        <fix>
+            <item>French language file not loaded</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.0.5</version>
         <note>
             <item>Update : 15/04/2024</item>
