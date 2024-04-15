@@ -3,6 +3,21 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.0.5</version>
+        <note>
+            <item>Update : 15/04/2024</item>
+        </note>
+        <change>
+            <item>Store webp images in media/plg_system_cgwebp/_cache directory</item>
+        </change>
+        <addition>
+            <item>French language file</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.0.4</version>
         <note>
             <item>Update : 14/04/2024</item>

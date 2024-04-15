@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="plugin" version="4.0" group="system" method="upgrade">
     <name>System - CG Webp</name>
-    <creationDate>2024-04-14</creationDate>
+    <creationDate>2024-04-15</creationDate>
     <author>ConseilGouz</author>
 	<copyright>Copyright (C) 2024 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <description>PLG_SYSTEM_CGWEBP_DESCRIPTION</description>
     <namespace path="src">Conseilgouz\Plugin\System\Cgwebp</namespace>
     <scriptfile>script.cgwebp.php</scriptfile>
@@ -20,9 +20,11 @@
     </files>
 	<languages>
 		<language tag="en-GB">language/en-GB/plg_system_cgwebp.sys.ini</language>
+		<language tag="fr-FR">language/en-GB/plg_system_cgwebp.sys.ini</language>
 	</languages>
 	<media destination="plg_system_cgwebp" folder="media">
 		<folder>js</folder>
+		<folder>_cache</folder>
 		<filename>index.html</filename>
 	</media>
     <config>

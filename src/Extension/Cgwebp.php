@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.3
+ * @version		1.0.5
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -179,8 +179,8 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             if (!isset($this->_webps[$imgHash])) {
                 if ($this->params->get('storage', 'same') == "same") { // same as original image
                     $newImagePath = $imgInfo['dirname'] . '/';
-                } else { // in media/plg_system_webp directory
-                    $newImagePath = JPATH_ROOT .'/media/plg_system_cgwebp/'.pathinfo($image)['dirname'].'/';
+                } else { // in media/plg_system_webp/_cache directory
+                    $newImagePath = JPATH_ROOT .'/media/plg_system_cgwebp/_cache/'.pathinfo($image)['dirname'].'/';
                 }
                 $newImage = $newImagePath . $imgInfo['filename'] . '.webp';
 
@@ -222,4 +222,5 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             return $this->_webps[$imgHash];
         }
     }
+
 }
