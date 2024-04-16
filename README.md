@@ -11,4 +11,8 @@ Storing created images in media directory has the double advantages to easily lo
 
 On your pages, webp images will be displayed, replacing original images.
 
+Note : to be compatible with DJ-WebP plugin, directory parameter is set to "Same".
+
+<b>Important</b> : If you were using DJ-WebP plugin, don't forget to disable it.
+
 ![cgwebp](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/55d0bbe7-36c1-47f8-a278-50533f6796e5)
