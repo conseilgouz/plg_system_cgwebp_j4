@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.5
+ * @version		1.0.7
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -13,6 +13,8 @@ namespace Conseilgouz\Plugin\System\Cgwebp\Extension;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Filesystem\File;
@@ -160,10 +162,11 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
     private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $purgePrevious = false, $regexPath = '', $fullRegex = '')
     {
+        $image = MediaHelper::getCleanMediaFieldValue($image); // Remove Joomla media infos
+
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
         $imgHash = md5($imgPath);
-
 
         if(!isset($imgInfo['extension']) || !$imgInfo['extension']) {
             return;
@@ -211,12 +214,11 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                             imagesavealpha($img, true);
                             imagewebp($img, $newImage, $quality);
                         } catch (\Throwable $throwable) {
-                            Log::add('unable to enable plugin bday', Log::ERROR, 'jerror');
-                            return false;
+                            return false; // conversion error :ignore image
                         }
                     }
                 }
-                $newFile = str_replace(JPATH_ROOT . '/', "", $newImage);
+                $newFile = str_replace(JPATH_ROOT . '/', "", $newImage)."?ver=".$imgHash;
                 $this->_webps[$imgHash] = $newFile;
             }
             return $this->_webps[$imgHash];

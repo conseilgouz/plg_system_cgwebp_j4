@@ -3,6 +3,21 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.0.7</version>
+        <note>
+            <item>Update : 16/04/2024</item>
+        </note>
+        <fix>
+            <item>Remove image media info from image name</item>
+        </fix>
+        <change>
+            <item>Add version to webp image from original image hash (force reload on change)</item>
+        </change>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.0.6</version>
         <note>
             <item>Update : 15/04/2024</item>
