@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.0.10</version>
+        <note>
+            <item>Update : 17/04/2024</item>
+        </note>
+        <fix>
+            <item>images may end by single quote in scripts</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.0.9</version>
         <note>
             <item>Update : 17/04/2024</item>

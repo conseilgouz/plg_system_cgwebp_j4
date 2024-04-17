@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.9
+ * @version		1.0.10
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -116,7 +116,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         if(count($extensions)) {
             $regexPath = str_replace("/", "\/", $onefilter->directory);
             $sHtml = preg_replace_callback(
-                '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=["?#])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
+                '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=[\'"?#])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
                 function ($match) use ($quality, $stored_time, $excludedArr, $purge, &$debugTarget, $regexPath) {
                     $img = $match[0];
                     $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $purge, $regexPath, $match);
