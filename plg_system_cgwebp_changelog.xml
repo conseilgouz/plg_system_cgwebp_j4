@@ -3,7 +3,19 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
-		<version>1.0.7</version>
+		<version>1.0.9</version>
+        <note>
+            <item>Update : 17/04/2024</item>
+        </note>
+        <fix>
+            <item>Wrong extensions list</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
+		<version>1.0.8</version>
         <note>
             <item>Update : 17/04/2024</item>
         </note>
