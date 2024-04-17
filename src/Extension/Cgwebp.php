@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.7
+ * @version		1.0.8
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -116,7 +116,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         if(count($extensions)) {
             $regexPath = str_replace("/", "\/", $onefilter->directory);
             $sHtml = preg_replace_callback(
-                '/' . $regexPath . '\/\S+(?:' . implode('|', $extensions) . ')\b/',
+                '/' . $regexPath . '\/.*?jpg(?=["?#])|#joomlaImage.*?jpg.+?(?=\")\b/',
                 function ($match) use ($quality, $stored_time, $excludedArr, $purge, &$debugTarget, $regexPath) {
                     $img = $match[0];
                     $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $purge, $regexPath, $match);
@@ -162,8 +162,6 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
     private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $purgePrevious = false, $regexPath = '', $fullRegex = '')
     {
-        $image = MediaHelper::getCleanMediaFieldValue($image); // Remove Joomla media infos
-
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
         $imgHash = md5($imgPath);
@@ -177,7 +175,9 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 return;
             }
         }
-
+        if (str_starts_with($image, '#')) { // media manager image part : ignore it
+            return;
+        }
         if(is_file($imgPath)) {
             if (!isset($this->_webps[$imgHash])) {
                 if ($this->params->get('storage', 'same') == "same") { // same as original image

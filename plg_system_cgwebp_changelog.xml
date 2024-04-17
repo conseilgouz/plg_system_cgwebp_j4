@@ -5,6 +5,18 @@
 		<group>system</group>
 		<version>1.0.7</version>
         <note>
+            <item>Update : 17/04/2024</item>
+        </note>
+        <fix>
+            <item>Image media info from image name</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
+		<version>1.0.7</version>
+        <note>
             <item>Update : 16/04/2024</item>
         </note>
         <fix>
