@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.10
+ * @version		1.1.0
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -13,13 +13,11 @@ namespace Conseilgouz\Plugin\System\Cgwebp\Extension;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Session\Session;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
-use Joomla\CMS\Log\Log;
 use Conseilgouz\Plugin\System\Cgwebp\Helper\CgwebpHelper;
 
 final class Cgwebp extends CMSPlugin implements SubscriberInterface
@@ -30,13 +28,14 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
     {
         return [
             'onAfterRender'   => 'onAfterRender',
+            'onAjaxCgwebp' => 'onAjaxCgwebp'
         ];
     }
 
     public function onAfterRender()
     {
         $app = Factory::getApplication();
-        $user = Factory::getApplication()->getIdentity();
+        $user = $app->getIdentity();
 
 
         if ($app->getDocument()->getType() !== 'html' || !$app->isClient('site')) {
@@ -52,55 +51,44 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             return;
         }
 
-        if (CgwebpHelper::browserSupportWebp()) {
-            $sHtml = $app->getBody();
+        if (!CgwebpHelper::browserSupportWebp()) {
+            return;
+        }
 
+        $sHtml = $app->getBody();
 
-            $filters = (array) $this->params->get('filters');
+        $filters = (array) $this->params->get('filters');
 
-            $webp_purge = $app->input->get('webp_purge', false, 'bool');
-            $purge = false;
-            if ($webp_purge) {
-                $purge = true;
-            }
+        $this->debugData = array();
 
-            $this->debugData = array();
-
-            if(is_countable($filters) && count($filters)) {
-
-                foreach ($filters as $filter) {
-                    if (is_string($filter)) {
-                        $filter = json_decode($filter);
-                        foreach ($filter as $onefilter) {
-                            if ($onefilter->directory) {
-                                $sHtml = $this->gowebp($sHtml, $onefilter, $purge);
-                            }
+        if(is_countable($filters) && count($filters)) {
+            foreach ($filters as $filter) {
+                if (is_string($filter)) {
+                    $filter = json_decode($filter);
+                    foreach ($filter as $onefilter) {
+                        if ($onefilter->directory) {
+                            $sHtml = $this->gowebp($sHtml, $onefilter, $purge);
                         }
-                    } else {
-                        if ($filter->directory) {
-                            $sHtml = $this->gowebp($sHtml, $filter, $purge);
-                        }
-
+                    }
+                } else {
+                    if ($filter->directory) {
+                        $sHtml = $this->gowebp($sHtml, $filter, $purge);
                     }
                 }
-
             }
-            if($this->params->get('debug')) {
-                $sHtml .= '<pre>' . print_r($this->debugData, true) . '</pre>';
-            }
-
-
-            $app->setBody($sHtml);
         }
+        if($this->params->get('debug')) {
+            $sHtml .= '<pre>' . print_r($this->debugData, true) . '</pre>';
+        }
+        $app->setBody($sHtml);
     }
     private function gowebp($sHtml, $onefilter, $purge)
     {
-
-        $extensions = $onefilter->extensions;
-        $quality = $onefilter->quality;
-        $stored_time = $onefilter->stored_time;
-        $excluded = $onefilter->excluded;
-        $excludedArr = strlen($excluded) ? explode(';', $excluded) : array();
+        $extensions     = $onefilter->extensions;
+        $quality        = $onefilter->quality;
+        $stored_time    = $onefilter->stored_time;
+        $excluded       = $onefilter->excluded;
+        $excludedArr    = strlen($excluded) ? explode(';', $excluded) : array();
 
         $this->debugData[$onefilter->directory] = array();
         $debugTarget =  &$this->debugData[$onefilter->directory];
@@ -224,5 +212,22 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             return $this->_webps[$imgHash];
         }
     }
+    public function onAjaxCgwebp()
+    {
+        if (!Session::checkToken()) {
+            echo 'token error';
+            return;
+        }
 
+        $input	= Factory::getApplication()->input;
+        $task = $input->getString('task');
+        if ($task != 'clean') {
+            echo 'not clean';
+            return;
+        }
+        if (is_dir(JPATH_ROOT . '/media/plg_system_cgwebp/_cache')) {
+            Folder::delete(JPATH_ROOT . '/media/plg_system_cgwebp/_cache');
+        }
+        echo 'ok';
+    }
 }

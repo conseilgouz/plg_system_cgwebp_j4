@@ -3,6 +3,21 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.1.0</version>
+        <note>
+            <item>Update : 20/04/2024</item>
+        </note>
+        <addition>
+            <item>Add Destroy Webp images button if directory is set to media</item>
+        </addition>
+        <change>
+            <item>Remove unnecessary code</item>
+        </change>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.0.10</version>
         <note>
             <item>Update : 17/04/2024</item>

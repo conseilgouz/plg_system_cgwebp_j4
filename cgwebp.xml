@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="plugin" version="4.0" group="system" method="upgrade">
     <name>System - CG Webp</name>
-    <creationDate>2024-04-17</creationDate>
+    <creationDate>2024-04-20</creationDate>
     <author>ConseilGouz</author>
 	<copyright>Copyright (C) 2024 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-    <version>1.0.10</version>
+    <version>1.1.0</version>
     <description>PLG_SYSTEM_CGWEBP_DESCRIPTION</description>
     <namespace path="src">Conseilgouz\Plugin\System\Cgwebp</namespace>
     <scriptfile>script.cgwebp.php</scriptfile>
@@ -47,12 +47,13 @@
                 <field name="webp_support" type="webpsupport"/>
                 <field name="storage" type="radio" default="same" 
                     label="PLG_SYSTEM_CGWEBP_STORAGE" description="PLG_SYSTEM_CGWEBP_STORAGE_DESC"
-                       class="btn-group btn-group-yesno">
+                       class="btn-group btn-group-yesno half left">
                     <option value="same">PLG_SYSTEM_CGWEBP_STORAGE_SAME</option>
                     <option value="media">PLG_SYSTEM_CGWEBP_STORAGE_MEDIA</option>
                 </field>
+                <field name="webp_destroy" type="webpdestroy"/>
                 <field name="debug" type="radio" default="0" label="PLG_SYSTEM_CGWEBP_DEBUG"
-                       class="btn-group btn-group-yesno">
+                       class="btn-group btn-group-yesno clear">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
