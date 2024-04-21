@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.1.2</version>
+        <note>
+            <item>Update : 21/04/2024</item>
+        </note>
+        <fix>
+            <item>Destroy images : check if user is authorized to do it</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.1.1</version>
         <note>
             <item>Update : 21/04/2024</item>

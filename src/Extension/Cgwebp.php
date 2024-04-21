@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.1.0
+ * @version		1.1.2
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -218,7 +218,11 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             echo 'token error';
             return;
         }
-
+        $user = Factory::getApplication()->getIdentity();
+        if (!$user->authorise('core.edit', 'com_plugins')) {
+            echo 'not authorized';
+            return;
+        }
         $input	= Factory::getApplication()->input;
         $task = $input->getString('task');
         if ($task != 'clean') {
