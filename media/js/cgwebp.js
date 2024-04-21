@@ -1,5 +1,5 @@
 /**
- * @version		1.1.0
+ * @version		1.1.1
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -9,6 +9,13 @@
 
 document.addEventListener("DOMContentLoaded", function(){
     
+    // Destroy button
+    deletewebp = document.querySelector('#webpdestroy');
+    if (!deletewebp) return; // not defined : ignore
+    deletewebp.addEventListener('click',function() {
+        delete_webp();
+    })
+
     clears = document.querySelectorAll('.clear');
     for(var i=0; i< clears.length; i++) {
         let clear = clears[i];
@@ -25,11 +32,6 @@ document.addEventListener("DOMContentLoaded", function(){
         group = half.parentNode.parentNode.parentNode.style.width = "50%";
     }
     
-    // Destroy button
-    deletewebp = document.querySelector('#webpdestroy');
-    deletewebp.addEventListener('click',function() {
-        delete_webp();
-    })
     // show/hide button depending on Storage value
     storageMedia = document.querySelector('#jform_params_storage1');
     storageSame = document.querySelector('#jform_params_storage0');
