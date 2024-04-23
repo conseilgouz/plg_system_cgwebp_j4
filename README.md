@@ -3,7 +3,7 @@ CG WebP - convert images to WEBP without any external library.
 
 CG WebP plugin helps you optimize your page load.
 
-When a page is displayed, all images from defined (jpg/png) formats are converted to WEBP format and stored in media/plg_system_cgwebp directory or in original images directory.
+When a page is displayed, all images from jpg and/or png formats are converted to WEBP format and stored in media/plg_system_cgwebp directory or in original images directory.
 
 When images are updated, their webp images is updated as well. Webp images have a version based on original image hash, so, on change, they will be reloaded by web browser.
 
