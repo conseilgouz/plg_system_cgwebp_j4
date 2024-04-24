@@ -19,4 +19,6 @@ Note : to be compatible with DJ-WebP plugin, directory parameter is set to "Same
 
 Click on <b>Check WebP support</b> button to make sure your server handles WebP conversion.
 
-Note : Version 1.1.0 introduces a new <b>Destroy Webp</b> images button (enabled if WebP directory is set to Media).
+<b>Note</b> : Version 1.1.0 introduces a new <b>Destroy Webp</b> images button (enabled if WebP directory is set to Media).
+
+<b>Note (again) : on the top, rightmost position, Show/Hide has been added by <a href="https://www.phoca.cz/phoca-collapse-system-plugin" target="_blank">Phoca Collapse plugin</a>
