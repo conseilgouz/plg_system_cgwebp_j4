@@ -21,4 +21,4 @@ Click on <b>Check WebP support</b> button to make sure your server handles WebP 
 
 <b>Note</b> : Version 1.1.0 introduces a new <b>Destroy Webp</b> images button (enabled if WebP directory is set to Media).
 
-<b>Note (again)</b> : on the top, rightmost position, Show/Hide has been added by <a href="https://www.phoca.cz/phoca-collapse-system-plugin" target="_blank">Phoca Collapse plugin</a>
+<b>Note (again)</b> : on the top, rightmost position, <b>Show/Hide</b> has been added by <a href="https://www.phoca.cz/phoca-collapse-system-plugin" target="_blank">Phoca Collapse plugin</a>
