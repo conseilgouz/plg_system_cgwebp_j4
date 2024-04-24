@@ -15,6 +15,12 @@ Note : to be compatible with DJ-WebP plugin, directory parameter is set to "Same
 
 <b>Important</b> : If you were using DJ-WebP plugin, don't forget to disable it.
 
+To access CG Webp plugin, in your administration, click on Plugins button and enter webp in filter options : 
+
+![cg_webp_plugin](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/d9e7a39a-b94d-4fad-a1b1-e677f559de80)
+
+Click on CG Webp and you'll have access to its parameters:
+
 ![cg_webp_1 1 2](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/cd2a6ee4-acb8-4d39-a6f8-bccfd8b139bc)
 
 Click on <b>Check WebP support</b> button to make sure your server handles WebP conversion.
