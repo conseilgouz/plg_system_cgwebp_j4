@@ -15,7 +15,7 @@ Note : to be compatible with DJ-WebP plugin, directory parameter is set to "Same
 
 <b>Important</b> : If you were using DJ-WebP plugin, don't forget to disable it.
 
-![cgwebp](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/55d0bbe7-36c1-47f8-a278-50533f6796e5)
+![cg_webp_1 1 2](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/cd2a6ee4-acb8-4d39-a6f8-bccfd8b139bc)
 
 Click on <b>Check WebP support</b> button to make sure your server handles WebP conversion.
 
