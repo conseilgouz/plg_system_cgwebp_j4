@@ -1,5 +1,5 @@
 # plg_system_cgwebp_j4
-CG WebP - convert images to WEBP without any external library.
+CG WebP - convert images to WEBP using GD for image processing, without any external library.
 
 CG WebP plugin helps you optimize your page load.
 
