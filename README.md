@@ -1,6 +1,5 @@
-# plg_system_cgwebp_j4
-CG WebP - convert images to WEBP using <b>GD for image processing</b>, without any external library.<a href="https://buymeacoffee.com/conseilgouz">![buy_me_a_coffee](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/4fda4cb5-64f1-4717-81ae-c71a0fc26c2d)</a>
-
+# plg_system_cgwebp_j4 <span style="right:0"><a href="https://buymeacoffee.com/conseilgouz">![buy_me_a_coffee](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/4fda4cb5-64f1-4717-81ae-c71a0fc26c2d)</a></span>
+CG WebP - convert images to WEBP using <b>GD for image processing</b>, without any external library.
 
 CG WebP plugin helps you optimize your page load.
 
