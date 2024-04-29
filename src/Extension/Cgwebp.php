@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.1.2
+ * @version		1.2.2
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -67,12 +67,12 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                     $filter = json_decode($filter);
                     foreach ($filter as $onefilter) {
                         if ($onefilter->directory) {
-                            $sHtml = $this->gowebp($sHtml, $onefilter, $purge);
+                            $sHtml = $this->gowebp($sHtml, $onefilter);
                         }
                     }
                 } else {
                     if ($filter->directory) {
-                        $sHtml = $this->gowebp($sHtml, $filter, $purge);
+                        $sHtml = $this->gowebp($sHtml, $filter);
                     }
                 }
             }
@@ -82,7 +82,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         }
         $app->setBody($sHtml);
     }
-    private function gowebp($sHtml, $onefilter, $purge)
+    private function gowebp($sHtml, $onefilter)
     {
         $extensions     = $onefilter->extensions;
         $quality        = $onefilter->quality;
@@ -105,9 +105,9 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             $regexPath = str_replace("/", "\/", $onefilter->directory);
             $sHtml = preg_replace_callback(
                 '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=[\'"?#])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
-                function ($match) use ($quality, $stored_time, $excludedArr, $purge, &$debugTarget, $regexPath) {
+                function ($match) use ($quality, $stored_time, $excludedArr, &$debugTarget, $regexPath) {
                     $img = $match[0];
-                    $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $purge, $regexPath, $match);
+                    $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $regexPath, $match);
                     $debugTarget[] = array(
                         'source' => $img,
                         'target' => $newImg
@@ -148,7 +148,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         return $exist;
     }
 
-    private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $purgePrevious = false, $regexPath = '', $fullRegex = '')
+    private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $regexPath = '', $fullRegex = '')
     {
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
