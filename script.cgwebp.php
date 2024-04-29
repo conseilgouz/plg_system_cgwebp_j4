@@ -4,7 +4,7 @@
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
- * @license		GNU/GPL v3; see LICENSE.php
+ * license      https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  * From DJ-WEBP version 1.0.0
  **/
 // No direct access to this file
