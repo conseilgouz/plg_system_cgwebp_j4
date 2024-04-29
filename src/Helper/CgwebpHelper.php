@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.0
+ * @version		1.2.0
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -9,6 +9,9 @@
  **/
 
 namespace ConseilGouz\Plugin\System\Cgwebp\Helper;
+
+// Prevent direct access
+defined('_JEXEC') or die;
 
 class CgwebpHelper {
 
