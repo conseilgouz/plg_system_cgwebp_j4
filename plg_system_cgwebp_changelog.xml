@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.3</version>
+        <note>
+            <item>Update : 05/05/2024</item>
+        </note>
+        <fix>
+            <item>Update : wrong extension name</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.2.2</version>
         <note>
             <item>Update : 29/04/2024</item>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.0
+ * @version		1.2.3
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -50,8 +50,17 @@ class plgSystemcgwebpInstallerScript
                 $app = Factory::getApplication();
                 $app->enqueueMessage('CG Webp : Update params error', 'error');
                 return false;
-            }
+           
+           }
         }
+        // wrong extension name
+        $query = $db->getQuery(true)
+               ->delete('#__update_sites')
+              ->where($db->quoteName('location') . ' like '.$db->quote('%plg_system_cgwebp_update.xml%'))
+              ->where($db->quoteNmae('name'). '='. $db->quote('cgchglog'));
+        $db->setQuery($query);
+        $result = $db->execute();
+
         // Enable plugin
         $query = $db->getQuery(true);
         $db->setQuery('UPDATE #__extensions SET enabled = 1 WHERE extension_id = ' . $schema->extension_id);
