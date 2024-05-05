@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.2.3
+ * @version		1.2.4
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -57,7 +57,7 @@ class plgSystemcgwebpInstallerScript
         $query = $db->getQuery(true)
                ->delete('#__update_sites')
               ->where($db->quoteName('location') . ' like '.$db->quote('%plg_system_cgwebp_update.xml%'))
-              ->where($db->quoteNmae('name'). '='. $db->quote('cgchglog'));
+              ->where($db->quoteName('name'). '='. $db->quote('cgchglog'));
         $db->setQuery($query);
         $result = $db->execute();
 

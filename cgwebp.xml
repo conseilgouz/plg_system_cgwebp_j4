@@ -7,7 +7,7 @@
 	<license>GNU/GPL</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <description>PLG_SYSTEM_CGWEBP_DESCRIPTION</description>
     <namespace path="src">Conseilgouz\Plugin\System\Cgwebp</namespace>
     <scriptfile>script.cgwebp.php</scriptfile>
