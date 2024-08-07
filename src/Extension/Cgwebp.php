@@ -107,12 +107,14 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=[\'"?#])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
                 function ($match) use ($quality, $stored_time, $excludedArr, &$debugTarget, $regexPath) {
                     $img = $match[0];
-                    $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $regexPath, $match);
-                    $debugTarget[] = array(
-                        'source' => $img,
-                        'target' => $newImg
-                    );
-
+                    $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $regexPath, $match,$debugTarget);
+                    if (!$newImg) { // no conversion
+                        $debugTarget[] = array(
+                            'source' => $image,
+                            'target' => $newImg,
+                            'new'    => false
+                        );
+                    }
                     return $newImg ? $newImg : $img;
                 },
                 $sHtml
@@ -148,11 +150,12 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         return $exist;
     }
 
-    private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $regexPath = '', $fullRegex = '')
+    private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $regexPath = '', $fullRegex = '', &$debugTarget = [])
     {
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
         $imgHash = md5($imgPath);
+        $bNew    = false;
 
         if(!isset($imgInfo['extension']) || !$imgInfo['extension']) {
             return;
@@ -201,6 +204,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                             imagealphablending($img, true);
                             imagesavealpha($img, true);
                             imagewebp($img, $newImage, $quality);
+                            $bNew = true;
                         } catch (\Throwable $throwable) {
                             return false; // conversion error :ignore image
                         }
@@ -209,6 +213,11 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 $newFile = str_replace(JPATH_ROOT . '/', "", $newImage)."?ver=".$imgHash;
                 $this->_webps[$imgHash] = $newFile;
             }
+            $debugTarget[] = array(
+                 'source' => $image,
+                 'target' => $this->_webps[$imgHash],
+                 'new'    => $bNew
+            );
             return $this->_webps[$imgHash];
         }
     }

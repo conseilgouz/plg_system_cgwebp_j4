@@ -3,6 +3,21 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.5</version>
+        <note>
+            <item>Update : 07/08/2024</item>
+        </note>
+        <fix>
+            <item>Undefined array key  $_SERVER['HTTP_ACCEPT']</item>
+        </fix>
+        <addition>
+            <item>Add New flag in debug data</item>
+        </addition>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.2.4</version>
         <note>
             <item>Update : 05/05/2024</item>
