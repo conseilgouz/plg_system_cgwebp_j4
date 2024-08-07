@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.2.2
+ * @version		1.2.5
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -112,7 +112,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                         $debugTarget[] = array(
                             'source' => $image,
                             'target' => $newImg,
-                            'new'    => false
+                            'new'    => 'false'
                         );
                     }
                     return $newImg ? $newImg : $img;
@@ -155,7 +155,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
         $imgHash = md5($imgPath);
-        $bNew    = false;
+        $bNew    = 'false';
 
         if(!isset($imgInfo['extension']) || !$imgInfo['extension']) {
             return;
@@ -204,7 +204,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                             imagealphablending($img, true);
                             imagesavealpha($img, true);
                             imagewebp($img, $newImage, $quality);
-                            $bNew = true;
+                            $bNew = 'true';
                         } catch (\Throwable $throwable) {
                             return false; // conversion error :ignore image
                         }

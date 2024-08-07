@@ -22,12 +22,12 @@ class CgwebpHelper {
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
         // If browser is Internet Explorer
-        if (strpos(user_agent, 'MSIE') !== false) return false;
+        if (strpos($user_agent, 'MSIE') !== false) return false;
 
         // If user browser is safari and is not Opera
         if(
             strpos($user_agent, 'Safari') &&
-            !strpos( $user_agent, ' Chrome/' ) &&
+            !strpos($user_agent, ' Chrome/' ) &&
             !(strpos($user_agent, 'Edge'))
         ) return false;
 
@@ -36,7 +36,7 @@ class CgwebpHelper {
 
         // If browser doesnt support webp
         if (isset($_SERVER['HTTP_ACCEPT'])) {
-            if (!strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp' )) {
+            if (!strpos($_SERVER['HTTP_ACCEPT'], 'image/webp' )) {
                 return false;
             }
         }
