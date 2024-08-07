@@ -30,6 +30,7 @@
     <config>
         <fields name="params">
             <fieldset name="basic" addfieldprefix="Conseilgouz\Plugin\System\Cgwebp\Field">
+				<field name="version" type="version"  margintop="-3em"  extension="cgwebp" />
 				<field
 				name="filters" type="subform" icon="list"
                 label="PLG_SYSTEM_CGWEBP_FILTERS" multiple="true"
