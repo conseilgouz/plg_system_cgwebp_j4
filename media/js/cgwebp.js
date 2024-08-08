@@ -1,5 +1,4 @@
 /**
- * @version		1.1.2
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -30,6 +29,11 @@ document.addEventListener("DOMContentLoaded", function(){
     for(var i=0; i< halfs.length; i++) {
         let half = halfs[i];
         group = half.parentNode.parentNode.parentNode.style.width = "50%";
+    }
+    halfs = document.querySelectorAll('.view-plugin .sixty');
+    for(var i=0; i< halfs.length; i++) {
+        let half = halfs[i];
+        group = half.parentNode.parentNode.parentNode.style.width = "60%";
     }
     
     // show/hide button depending on Storage value

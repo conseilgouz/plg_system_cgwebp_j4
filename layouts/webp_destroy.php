@@ -13,7 +13,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Language\Text;
 
 ?>
-  <button class="btn btn-primary" type="button" id="webpdestroy" >
+  <button class="btn btn-primary" type="button" id="webpdestroy" style="float:right;width:40%">
     <?php echo Text::_('PLG_SYSTEM_CGWEBP_DESTROY'); ?>
   </button>
   <div id="destroy_message" aria-live="polite"></div>

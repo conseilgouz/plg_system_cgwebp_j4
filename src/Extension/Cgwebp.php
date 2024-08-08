@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		1.2.5
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -107,12 +106,17 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=[\'"?#])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
                 function ($match) use ($quality, $stored_time, $excludedArr, &$debugTarget, $regexPath) {
                     $img = $match[0];
-                    $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $regexPath, $match,$debugTarget);
+                    $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $regexPath, $match, $debugTarget);
+                    $new = 'false';
+                    if (in_array($newImg,['extension','excluded','ignored','error'])) {
+                        $new = $newImg;
+                        $newImg = false;
+                    }
                     if (!$newImg) { // no conversion
                         $debugTarget[] = array(
-                            'source' => $image,
+                            'source' => $img,
                             'target' => $newImg,
-                            'new'    => 'false'
+                            'new'    => $new
                         );
                     }
                     return $newImg ? $newImg : $img;
@@ -158,16 +162,16 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         $bNew    = 'false';
 
         if(!isset($imgInfo['extension']) || !$imgInfo['extension']) {
-            return;
+            return 'extension';
         }
 
         if(count($excluded)) {
             if(in_array($image, $excluded) || $this->isExcludedDirectory($image, $excluded)) {
-                return;
+                return 'excluded';
             }
         }
         if (str_starts_with($image, '#')) { // media manager image part : ignore it
-            return;
+            return 'ignored';
         }
         if(is_file($imgPath)) {
             if (!isset($this->_webps[$imgHash])) {
@@ -206,7 +210,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                             imagewebp($img, $newImage, $quality);
                             $bNew = 'true';
                         } catch (\Throwable $throwable) {
-                            return false; // conversion error :ignore image
+                            return 'error'; // conversion error :ignore image
                         }
                     }
                 }

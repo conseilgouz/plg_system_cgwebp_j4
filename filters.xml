@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
+    <config>
+        <inlinehelp button="show"/>
+    </config>
     <field name="directory"
-           label="PLG_SYSTEM_CGWEBP_DIRECTORY"
-           type="text" required="required"/>
+           label="PLG_SYSTEM_CGWEBP_DIRECTORY" description="PLG_SYSTEM_CGWEBP_DIRECTORY_DESC"
+           type="text" required="required" />
     <field name="extensions" label="PLG_SYSTEM_CGWEBP_EXTENSIONS" type="checkboxes" required="required">
         <option value="jpg|jpeg|JPG|JPEG">JPG/JPEG</option>
         <option value="png|PNG">PNG</option>
     </field>
-    <field name="quality" type="integer" label="PLG_SYSTEM_CGWEBP_QUALITY" first="1" last="100"
-           default="100" step="1" required="required" />
+    <field name="quality" type="integer" 
+           label="PLG_SYSTEM_CGWEBP_QUALITY" description="PLG_SYSTEM_CGWEBP_QUALITY_DESC" 
+           first="1" last="100" default="60" step="1" required="required" />
     <field name="stored_time" type="hidden" label="PLG_SYSTEM_CGWEBP_STORED_TIME"
-           description="PLG_SYSTEM_CGWEBP_STORED_TIME_DESC" default="0"
-    step="1"/>
+           description="PLG_SYSTEM_CGWEBP_STORED_TIME_DESC" />
     <field name="excluded" type="textarea" default="" label="PLG_SYSTEM_CGWEBP_EXCLUDES"
            description="PLG_SYSTEM_CGWEBP_EXCLUDES_DESC" rows="3" cols="20" filter="raw"/>
 </form>

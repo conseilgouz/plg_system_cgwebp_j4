@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		1.2.0
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
@@ -64,7 +63,8 @@ class CgmenuItemsField extends ListField
             ->select('m.id AS value, m.title AS text')
             ->from($db->quoteName('#__menu', 'm'))
             ->where('m.menutype <> ' . $db->quote('main'))
-            ->where('m.published = 1');
+            ->where('m.published = 1')
+            ->where('m.id > 1');
 
         $db->setQuery($query);
         static::$options = $db->loadObjectList();

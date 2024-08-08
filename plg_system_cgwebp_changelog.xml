@@ -3,6 +3,24 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.6</version>
+        <note>
+            <item>Update : 08/08/2024</item>
+        </note>
+        <fix>
+            <item>Don't display Menu_Item_Root in menus list</item>
+            <item>Inline help in filter subform</item>
+            <item>WebP Directory : adjust delete images button size</item>
+        </fix>
+        <addition>
+            <item>Add more description to plugin's parameters</item>
+            <item>Debug : add extension/excluded/menu/error values to [new] line</item>
+        </addition>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.2.5</version>
         <note>
             <item>Update : 07/08/2024</item>
