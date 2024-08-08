@@ -18,13 +18,11 @@ $serverSupportWebp = (isset($gdInfo['WebP Support']) && $gdInfo['WebP Support'])
 $browserSupportWebp = (!(strpos($_SERVER['HTTP_ACCEPT'], 'image/webp')) || strpos($_SERVER['HTTP_USER_AGENT'], ' Chrome/') !== false) ? true : false;
 
 ?>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#webpSupportContainer" aria-expanded="false" aria-controls="webpSupportContainer" >
+  <button class="btn btn-primary d-block m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#webpSupportContainer" aria-expanded="false" aria-controls="webpSupportContainer" >
     Check WebP support
   </button>
 <div id="webpSupportContainer" class="webpSupportContainer collapse">
- 
-    <h3><?php echo Text::_('PLG_SYSTEM_CGWEBP_SUPPORT_TABLE') ?></h3>
-    <table>
+    <table class="d-block m-auto p-4">
         <thead>
         <th><?php echo Text::_('PLG_SYSTEM_CGWEBP_SUPPORT_ENDPOINT'); ?></th>
         <th><?php echo Text::_('PLG_SYSTEM_CGWEBP_SUPPORT_SUPPORTED'); ?></th>
@@ -53,7 +51,6 @@ $browserSupportWebp = (!(strpos($_SERVER['HTTP_ACCEPT'], 'image/webp')) || strpo
         </tr>
         </tbody>
     </table>
-
 </div>
 <div style="clear: both"></div>
 <style>

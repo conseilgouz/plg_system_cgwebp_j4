@@ -31,6 +31,7 @@
         <fields name="params">
             <fieldset name="basic" addfieldprefix="Conseilgouz\Plugin\System\Cgwebp\Field">
 				<field name="version" type="version"  margintop="-3em"  extension="cgwebp" />
+                <field name="webp_support" type="webpsupport"/>
 				<field name="filters" type="subform" icon="list"
                 label="PLG_SYSTEM_CGWEBP_FILTERS" 
                 multiple="true" default=""
@@ -40,7 +41,6 @@
                         label="PLG_SYSTEM_CGWEBP_EXCLUDED_MENUS" description="PLG_SYSTEM_CGWEBP_EXCLUDED_MENUS_DESC"
                         multiple="true" layout="joomla.form.field.list-fancy-select" filter="intarray"
                 />
-                <field name="webp_support" type="webpsupport"/>
                 <field name="storage" type="radio" default="same" 
                     label="PLG_SYSTEM_CGWEBP_STORAGE" description="PLG_SYSTEM_CGWEBP_STORAGE_DESC"
                        class="btn-group btn-group-yesno sixty left">

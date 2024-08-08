@@ -16,6 +16,9 @@
             <item>Add more description to plugin's parameters</item>
             <item>Debug : add extension/excluded/menu/error values to [new] line</item>
         </addition>
+        <change>
+            <item>Move Webp support button to top</item>
+        </change>
     </changelog>
 	<changelog>
 		<element>plg_system_cgwebp</element>
