@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.7</version>
+        <note>
+            <item>Update : 16/08/2024</item>
+        </note>
+        <fix>
+            <item>SP PageBuilder : no quote in image overlay causing no webp conversion</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.2.6</version>
         <note>
             <item>Update : 08/08/2024</item>
