@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.8</version>
+        <note>
+            <item>Update : 19/09/2024</item>
+        </note>
+        <fix>
+            <item>Image file name with spaces causes no webp conversion</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.2.7</version>
         <note>
             <item>Update : 16/08/2024</item>

@@ -156,6 +156,9 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
     private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $regexPath = '', $fullRegex = '', &$debugTarget = [])
     {
+        if (strpos($image,'%20')) { // filenames with %20 : JCE replaces spaces by %20, let's change this 
+            $image = str_replace('%20',' ',$image);
+        }
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
         $imgHash = md5($imgPath);
