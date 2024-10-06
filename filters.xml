@@ -10,7 +10,7 @@
         <option value="jpg|jpeg|JPG|JPEG">JPG/JPEG</option>
         <option value="png|PNG">PNG</option>
     </field>
-    <field name="quality" type="integer" 
+    <field name="quality" type="cgrange" 
            label="PLG_SYSTEM_CGWEBP_QUALITY" description="PLG_SYSTEM_CGWEBP_QUALITY_DESC" 
            first="1" last="100" default="60" step="1" required="required" />
     <field name="stored_time" type="hidden" label="PLG_SYSTEM_CGWEBP_STORED_TIME"

@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.9</version>
+        <note>
+            <item>Update : 06/10/2024</item>
+        </note>
+        <change>
+            <item>Image quality : use CgRange Field</item>
+        </change>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.2.8</version>
         <note>
             <item>Update : 19/09/2024</item>
