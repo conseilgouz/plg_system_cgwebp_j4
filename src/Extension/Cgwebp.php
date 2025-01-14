@@ -2,7 +2,7 @@
 /**
  * @package		CGWebp system plugin
  * @author		ConseilGouz
- * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
+ * @copyright	Copyright (C) 2025 ConseilGouz. All rights reserved.
  * license      https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  * From DJ-WEBP version 1.0.0
  **/
@@ -34,19 +34,17 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
     public function onAfterRender()
     {
         $app = Factory::getApplication();
-        $user = $app->getIdentity();
-
 
         if ($app->getDocument()->getType() !== 'html' || !$app->isClient('site')) {
             return;
         }
 
         $gdInfo = gd_info();
-        if(!isset($gdInfo['WebP Support']) or !$gdInfo['WebP Support']) {
+        if (!isset($gdInfo['WebP Support']) or !$gdInfo['WebP Support']) {
             return;
         }
 
-        if($this->menuItemIsExcluded()) {
+        if ($this->menuItemIsExcluded()) {
             return;
         }
 
@@ -60,7 +58,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
         $this->debugData = array();
 
-        if(is_countable($filters) && count($filters)) {
+        if (is_countable($filters) && count($filters)) {
             foreach ($filters as $filter) {
                 if (is_string($filter)) {
                     $filter = json_decode($filter);
@@ -76,7 +74,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 }
             }
         }
-        if($this->params->get('debug')) {
+        if ($this->params->get('debug')) {
             $sHtml .= '<pre>' . print_r($this->debugData, true) . '</pre>';
         }
         $app->setBody($sHtml);
@@ -100,7 +98,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             $onefilter->directory = substr($onefilter->directory, 0, -1);
         }
 
-        if(count($extensions)) {
+        if (count($extensions)) {
             $regexPath = str_replace("/", "\/", $onefilter->directory);
             $sHtml = preg_replace_callback(
                 '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=[\'"?#\)])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
@@ -108,7 +106,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                     $img = $match[0];
                     $newImg = $this->imgToWebp($img, $quality, $excludedArr, $stored_time, $regexPath, $match, $debugTarget);
                     $new = 'false';
-                    if (in_array($newImg,['extension','excluded','ignored','error'])) {
+                    if (in_array($newImg, ['extension','excluded','ignored','error'])) {
                         $new = $newImg;
                         $newImg = false;
                     }
@@ -130,11 +128,10 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
     {
         $app  = Factory::getApplication();
 
-
         $excludedMenuItems = $this->params->get('excludedMenus', array(), 'array');
         $activeMenu = $app->getMenu()->getActive();
 
-        if(isset($activeMenu->id)) {
+        if (isset($activeMenu->id)) {
             return in_array($activeMenu->id, $excludedMenuItems);
         } else {
             return false;
@@ -146,7 +143,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         $exist = false;
         foreach ($excluded as $exclude) {
 
-            if(strpos($image, $exclude) !== false) {
+            if (strpos($image, $exclude) !== false) {
                 $exist = true;
                 break;
             }
@@ -156,27 +153,27 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
 
     private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $regexPath = '', $fullRegex = '', &$debugTarget = [])
     {
-        if (strpos($image,'%20')) { // filenames with %20 : JCE replaces spaces by %20, let's change this 
-            $image = str_replace('%20',' ',$image);
+        if (strpos($image, '%20')) { // filenames with %20 : JCE replaces spaces by %20, let's change this
+            $image = str_replace('%20', ' ', $image);
         }
         $imgPath = JPATH_ROOT . '/' . $image;
         $imgInfo = pathinfo($imgPath);
         $imgHash = md5($imgPath);
         $bNew    = 'false';
 
-        if(!isset($imgInfo['extension']) || !$imgInfo['extension']) {
+        if (!isset($imgInfo['extension']) || !$imgInfo['extension']) {
             return 'extension';
         }
 
-        if(count($excluded)) {
-            if(in_array($image, $excluded) || $this->isExcludedDirectory($image, $excluded)) {
+        if (count($excluded)) {
+            if (in_array($image, $excluded) || $this->isExcludedDirectory($image, $excluded)) {
                 return 'excluded';
             }
         }
         if (str_starts_with($image, '#')) { // media manager image part : ignore it
             return 'ignored';
         }
-        if(is_file($imgPath)) {
+        if (is_file($imgPath)) {
             if (!isset($this->_webps[$imgHash])) {
                 if ($this->params->get('storage', 'same') == "same") { // same as original image
                     $newImagePath = $imgInfo['dirname'] . '/';
@@ -189,7 +186,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 if (is_file($newImage)) {
                     $imgCreated = filemtime($imgPath);
                     $fileCreated = filemtime($newImage);
-                    if($fileCreated < $imgCreated) {
+                    if ($fileCreated < $imgCreated) {
                         File::delete($newImage);
                     }
                 }
@@ -218,6 +215,10 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                     }
                 }
                 $newFile = str_replace(JPATH_ROOT . '/', "", $newImage)."?ver=".$imgHash;
+                if (($this->params->get('storage', 'same') == "media") && 
+                    ($this->params->get('root', '0') == "1")) { // force root
+                        $newFile = '/'.$newFile;
+                }
                 $this->_webps[$imgHash] = $newFile;
             }
             $debugTarget[] = array(

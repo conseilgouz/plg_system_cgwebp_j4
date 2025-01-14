@@ -2,7 +2,7 @@
 /**
  * @package		CG Webp system plugin
  * @author		ConseilGouz
- * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
+ * @copyright	Copyright (C) 2025 ConseilGouz. All rights reserved.
  * @license		GNU/GPL v3; see LICENSE.php
  **/
 
@@ -11,11 +11,12 @@ use Joomla\CMS\Factory;
 
 extract($displayData);
 
+$extdir = $field->_ext.'_'.$field->_type.'_'.$field->_name;
+
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
-$wa->registerAndUseStyle('cgrange', 'media/plg_system_cgwebp/css/cgrange.css');
-$wa->registerAndUseScript('cgrange', 'media/plg_system_cgwebp/js/cgrange.js');
-
+$wa->registerAndUseStyle('cgrange', 'media/'.$extdir.'/css/cgrange.css');
+$wa->registerAndUseScript('cgrange', 'media/'.$extdir.'/js/cgrange.js');
 
 /**
  * Layout variables
