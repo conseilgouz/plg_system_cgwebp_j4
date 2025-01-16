@@ -14,6 +14,8 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Session\Session;
+use Joomla\CMS\Uri\Uri;
+use Joomla\Database\DatabaseAwareTrait;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
@@ -21,8 +23,11 @@ use Conseilgouz\Plugin\System\Cgwebp\Helper\CgwebpHelper;
 
 final class Cgwebp extends CMSPlugin implements SubscriberInterface
 {
+    use DatabaseAwareTrait;
+
     protected $_webps;
     protected $debugData;
+    protected $forceurl = false;
     public static function getSubscribedEvents(): array
     {
         return [
@@ -99,6 +104,8 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         }
 
         if (count($extensions)) {
+            $this->checkTemplate(); // check Helix Template
+
             $regexPath = str_replace("/", "\/", $onefilter->directory);
             $sHtml = preg_replace_callback(
                 '/' . $regexPath . '\/.*?(' . implode('|', $extensions) . ')(?=[\'"?#\)])|#joomlaImage.*?(' . implode('|', $extensions) . ').+?(?=\")\b/',
@@ -150,7 +157,51 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
         }
         return $exist;
     }
+    /*
+        conflict with Helix Ultimate Template
+        CG WebP plugin has to be done before Helix system plugin
+        If not, force root url to images
+    */
+    private function checkTemplate()
+    {
+        $app = Factory::getApplication();
+        $template = $app->getTemplate();
+        $template_params = $app->getTemplate('params');
+        $lazy = $template_params->params->get('image_lazy_loading', '0');
+        if (($template == "shaper_helixultimate") &&
+            ($lazy == "1")) {
+            $this->forceurl = true;
+        }
+        if (!$this->forceurl) {// no helix and/or lazyload
+            return;
+        }
 
+        $db    = $this->getDatabase();
+        $query = $db->getQuery(true)
+        ->select($db->quoteName('element'), $db->quoteName('ordering'))
+        ->from($db->quoteName('#__extensions'))
+        ->where(
+            [
+                $db->quoteName('enabled') . ' = 1',
+                $db->quoteName('type') . ' = ' . $db->quote('plugin'),
+                $db->quoteName('folder') . ' = ' . $db->quote('system'),
+                $db->quoteName('element') . ' IN ("helixultimate","cgwebp")',
+            ]
+        )
+        ->order($db->quoteName('ordering'));
+        $db->setQuery($query);
+
+        $results = $db->loadObjectList();
+        if (sizeof($results) < 2) { // no Helix plugin
+            return;
+        }
+        foreach ($results as $result) {
+            $last = $result->element;
+        }
+        if ($last == "cgwebp") {
+            $this->forceurl = false;
+        }
+    }
     private function imgToWebp($image, $quality = 100, $excluded = array(), $stored_time = 5, $regexPath = '', $fullRegex = '', &$debugTarget = [])
     {
         if (strpos($image, '%20')) { // filenames with %20 : JCE replaces spaces by %20, let's change this
@@ -215,9 +266,9 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                     }
                 }
                 $newFile = str_replace(JPATH_ROOT . '/', "", $newImage)."?ver=".$imgHash;
-                if (($this->params->get('storage', 'same') == "media") && 
-                    ($this->params->get('root', '0') == "1")) { // force root
-                        $newFile = '/'.$newFile;
+                if (($this->params->get('storage', 'same') == "media") &&
+                    $this->forceurl) { // Helix ultimate confict : force root
+                    $newFile = URI::root() .$newFile;
                 }
                 $this->_webps[$imgHash] = $newFile;
             }
