@@ -29,3 +29,9 @@ Click on <b>Check WebP support</b> button to make sure your server handles WebP 
 <b>Note</b> : Version 1.1.0 introduces a new <b>Destroy Webp</b> images button (enabled if WebP directory is set to Media).
 
 <b>Note (again)</b> : on the top, rightmost position, <b>Show/Hide</b> has been added by <a href="https://www.phoca.cz/phoca-collapse-system-plugin" target="_blank">Phoca Collapse plugin</a>
+
+<b>CG WebP and Helix Ultimate template.</b>
+
+If you enable <b>Image Lazy Load</b> in Helix Ultimate template and set <b>WebP Directory</b> to <b>Media</b> in CG WebP plugin, images are not correctly displayed.
+
+To make it work, you'll have to reorder system plugins so that Helix Ultimate plugin comes before CG WebP plugin.
