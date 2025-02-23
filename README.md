@@ -1,4 +1,4 @@
-# plg_system_cgwebp_j4
+# plg_system_cgwebp_j4 :spoon:
 
 CG WebP - convert images to WEBP using <b>GD for image processing</b>, without any external library. 
 
