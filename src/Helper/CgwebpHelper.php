@@ -7,7 +7,7 @@
  * From DJ-WEBP version 1.0.0
  **/
 
-namespace ConseilGouz\Plugin\System\Cgwebp\Helper;
+namespace Conseilgouz\Plugin\System\Cgwebp\Helper;
 
 // Prevent direct access
 defined('_JEXEC') or die;

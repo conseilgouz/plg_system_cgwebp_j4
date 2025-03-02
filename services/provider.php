@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		1.0.0
  * @package		CGWebp system plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2025 ConseilGouz. All rights reserved.
@@ -17,7 +16,6 @@ use Joomla\Database\DatabaseInterface;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
-use Joomla\Http\HttpFactory;
 use Conseilgouz\Plugin\System\Cgwebp\Extension\Cgwebp;
 
 return new class () implements ServiceProviderInterface {
