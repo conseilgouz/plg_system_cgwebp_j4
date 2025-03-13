@@ -35,7 +35,9 @@ class CgwebpHelper {
 
         // If browser doesnt support webp
         if (isset($_SERVER['HTTP_ACCEPT'])) {
-            if (!strpos($_SERVER['HTTP_ACCEPT'], 'image/webp' )) {
+            if (strpos($user_agent, 'Firefox') && strpos($_SERVER['HTTP_ACCEPT'], '*/*')) {
+                return true;
+            } elseif (!strpos($_SERVER['HTTP_ACCEPT'], 'image/webp')) {
                 return false;
             }
         }

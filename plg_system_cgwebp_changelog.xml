@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.3.2</version>
+        <note>
+            <item>Update : 13/03/2025</item>
+        </note>
+        <fix>
+            <item>Firefox : http_accept does not send image/webp, use */* instead</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.3.1</version>
         <note>
             <item>Update : 02/03/2025</item>
