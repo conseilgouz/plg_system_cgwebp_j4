@@ -6,7 +6,8 @@
  * From DJ-WEBP version 1.0.0
  **/
 .cgrange-label{margin-left: 1em;
-    background-color: lightgrey;
+    background-color: var(--btn-primary-bg);
+	color: var(--btn-primary-color);
     height: 1.7em;
     font-size: .9em;
     border-radius: 5px;
@@ -23,7 +24,7 @@
 .form-cgrange:before {
     position: absolute;
     top: 1.5em;
-    color: #aaa;
+    color: var(--login-label-color);
 }
 .form-cgrange.limits:before {
     left:0em;
