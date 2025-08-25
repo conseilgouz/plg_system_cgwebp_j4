@@ -165,14 +165,12 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
     private function checkTemplate()
     {
         $app = Factory::getApplication();
-        $template = $app->getTemplate();
+        $this->forceurl = false;
         $template_params = $app->getTemplate('params');
         $lazy = $template_params->params->get('image_lazy_loading', '0');
-        if (($template == "shaper_helixultimate") &&
-            ($lazy == "1")) {
+        if ($lazy == "1") { // lazy image load from helix ?
             $this->forceurl = true;
-        }
-        if (!$this->forceurl) {// no helix and/or lazyload
+        } else {
             return;
         }
 
@@ -188,17 +186,11 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
                 $db->quoteName('element') . ' IN ("helixultimate","cgwebp")',
             ]
         )
-        ->order($db->quoteName('ordering'));
+        ->order($db->quoteName('ordering'). ' DESC')
+        ->setLimit(1);
         $db->setQuery($query);
-
-        $results = $db->loadObjectList();
-        if (sizeof($results) < 2) { // no Helix plugin
-            return;
-        }
-        foreach ($results as $result) {
-            $last = $result->element;
-        }
-        if ($last == "cgwebp") {
+        $result = $db->loadObject();
+        if ($result->element == "cgwebp") {
             $this->forceurl = false;
         }
     }
@@ -291,7 +283,7 @@ final class Cgwebp extends CMSPlugin implements SubscriberInterface
             echo 'not authorized';
             return;
         }
-        $input	= Factory::getApplication()->input;
+        $input	= Factory::getApplication()->getInput();
         $task = $input->getString('task');
         if ($task != 'clean') {
             echo 'not clean';

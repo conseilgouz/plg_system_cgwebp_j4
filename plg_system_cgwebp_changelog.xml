@@ -3,6 +3,21 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.4.0</version>
+        <note>
+            <item>Update : 25/08/2025</item>
+        </note>
+        <fix>
+            <item>Joomla 6 : getApplication()->input removed</item>
+            <item>Joomla 6 : getDbo() removed</item>
+            <item>Field Version : use webassets and remove getDbo</item>
+            <item>Issue #6 : helix templates conflict if lazyload enabled</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.3.3</version>
         <note>
             <item>Update : 15/03/2025</item>

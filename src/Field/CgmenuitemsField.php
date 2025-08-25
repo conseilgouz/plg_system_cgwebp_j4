@@ -16,6 +16,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Access\Access;
 use Joomla\CMS\Helper\UserGroupsHelper;
 use Joomla\CMS\Form\Field\ListField;
+use Joomla\Database\DatabaseInterface;
 use Joomla\Registry\Registry;
 
 class CgmenuItemsField extends ListField
@@ -57,7 +58,7 @@ class CgmenuItemsField extends ListField
         $options        = parent::getOptions();
 
 
-        $db = Factory::getDbo();
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
         $query = $db->getQuery(true);
         $query
             ->select('m.id AS value, m.title AS text')

@@ -9,6 +9,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Factory;
+use Joomla\Database\DatabaseInterface;
 
 class plgSystemcgwebpInstallerScript
 {
@@ -17,7 +18,7 @@ class plgSystemcgwebpInstallerScript
         if (($type != 'install') && ($type != 'update')) {
             return true;
         }
-        $db = Factory::getDbo();
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
 
         $query = $db->getQuery(true);
         $query->select(array(
