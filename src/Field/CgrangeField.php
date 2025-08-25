@@ -9,7 +9,7 @@
 
 namespace Conseilgouz\Plugin\System\Cgwebp\Field;
 
-defined('JPATH_PLATFORM') or die;
+defined('_JEXEC') or die();
 use Joomla\CMS\Form\Field\RangeField;
 
 class CgrangeField extends RangeField
