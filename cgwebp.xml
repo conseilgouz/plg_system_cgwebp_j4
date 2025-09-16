@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="plugin" version="4.0" group="system" method="upgrade">
     <name>System - CG Webp</name>
-    <creationDate>2025-08-24</creationDate>
+    <creationDate>2025-09-16</creationDate>
     <author>ConseilGouz</author>
 	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <description>PLG_SYSTEM_CGWEBP_DESCRIPTION</description>
     <namespace path="src">Conseilgouz\Plugin\System\Cgwebp</namespace>
     <scriptfile>script.cgwebp.php</scriptfile>
@@ -30,15 +30,15 @@
 	</media>
     <config>
         <fields name="params">
-            <fieldset name="basic" addfieldprefix="Conseilgouz\Plugin\System\Cgwebp\Field">
-				<field name="version" type="version"  margintop="-3em"  extension="cgwebp" />
-                <field name="webp_support" type="webpsupport"/>
+            <fieldset name="basic" addfieldprefix="">
+				<field name="version" type="ConseilGouz\Library\Field\Version"  margintop="-3em"  extension="cgwebp" />
+                <field name="webp_support" type="Conseilgouz\Plugin\System\Cgwebp\Field\Webpsupport"/>
 				<field name="filters" type="subform" icon="list"
                 label="PLG_SYSTEM_CGWEBP_FILTERS" 
                 multiple="true" default=""
                 formsource="plugins/system/cgwebp/filters.xml"
                 />
-                <field name="excludedMenus" type="cgmenuitems"
+                <field name="excludedMenus" type="Conseilgouz\Plugin\System\Cgwebp\Field\Cgmenuitems"
                         label="PLG_SYSTEM_CGWEBP_EXCLUDED_MENUS" description="PLG_SYSTEM_CGWEBP_EXCLUDED_MENUS_DESC"
                         multiple="true" layout="joomla.form.field.list-fancy-select" filter="intarray"
                 />
@@ -48,7 +48,7 @@
                     <option value="same">PLG_SYSTEM_CGWEBP_STORAGE_SAME</option>
                     <option value="media">PLG_SYSTEM_CGWEBP_STORAGE_MEDIA</option>
                 </field>
-                <field name="webp_destroy" type="webpdestroy"/>
+                <field name="webp_destroy" type="Conseilgouz\Plugin\System\Cgwebp\Field\Webpdestroy"/>
                 <field name="debug" type="radio" default="0" 
                     label="PLG_SYSTEM_CGWEBP_DEBUG" description="PLG_SYSTEM_CGWEBP_DEBUG_DESC"
                        class="btn-group btn-group-yesno clear">

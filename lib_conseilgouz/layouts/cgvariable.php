@@ -1,22 +1,20 @@
 <?php
 /**
- * @package		CG Webp system plugin
- * @author		ConseilGouz
- * @copyright	Copyright (C) 2025 ConseilGouz. All rights reserved.
- * @license		GNU/GPL v3; see LICENSE.php
- **/
+ * CG Memo Module for Joomla 4.x/5.x/6.x
+ *
+ * @author     ConseilgGouz
+ * @copyright (C) 2025 www.conseilgouz.com. All Rights Reserved.
+ * @license    GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ */
 
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 
 extract($displayData);
 
-$extdir = $field->_ext.'_'.$field->_type.'_'.$field->_name;
-
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
-$wa->registerAndUseStyle('cgrange', 'media/'.$extdir.'/css/cgrange.css');
-$wa->registerAndUseScript('cgrange', 'media/'.$extdir.'/js/cgrange.js');
+$wa->registerAndUseScript('cgvariable', 'media/conseilgouz/fields/js/cgvariable.js');
 
 /**
  * Layout variables
@@ -55,28 +53,28 @@ $wa->registerAndUseScript('cgrange', 'media/'.$extdir.'/js/cgrange.js');
 
 // Initialize some field attributes.
 $attributes = [
-    $class ? 'class="form-cgrange ' . $class . '"' : 'class="form-cgrange"',
+    $class ? 'class="form-cgvariable ' . $class . '"' : 'class="form-cgvariable"',
     !empty($description) ? 'aria-describedby="' . ($id ?: $name) . '-desc"' : '',
     $disabled ? 'disabled' : '',
     $readonly ? 'readonly' : '',
     !empty($onchange) ? 'onchange="' . $onchange . '"' : '',
-    !empty($max) ? 'max="' . $max . '"' : '',
-    !empty($step) ? 'step="' . $step . '"' : '',
-    !empty($min) ? 'min="' . $min . '"' : '',
     $autofocus ? 'autofocus' : '',
     $dataAttribute,
 ];
-
-$value = is_numeric($value) ? (float) $value : $min;
-// CG Range : display current value after range
-//             add class="limits" to display ranhge limits
+$color = "";
+if ($value) {
+    $color = "background-color: var(".$value.");";
+}
 ?>
 <div style="display:flex">
+<div>
 <input
-    type="range"
+    type="text"
     name="<?php echo $name; ?>"
     id="<?php echo $id; ?>"
     value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"
     <?php echo implode(' ', $attributes); ?>>
-<span id="cgrange-label-<?php echo $id;?>" class="cgrange-label" data="<?php echo $id;?>" style="margin-left:1em"></span>
+<span class="<?php echo $id; ?>_color" style="display:inline-block">---> Light: <span id="<?php echo $id; ?>_light" data-bs-theme="light" style="<?php echo $color;?> height:1.5em;width:1.5em;display:inline-block"></span></span>
+<span class="<?php echo $id; ?>_color" style="display:inline-block">,Dark : <span id="<?php echo $id; ?>_dark"  data-bs-theme="dark" style="<?php echo $color;?> height:1.5em;width:1.5em;display:inline-block"></span></span>
+</div>
 </div>

@@ -1,11 +1,13 @@
 /**
- * @package		CGWebp system plugin
- * @author		ConseilGouz
- * @copyright	Copyright (C) 2025 ConseilGouz. All rights reserved.
- * @license		GNU/GPL v3; see LICENSE.php
- * From DJ-WEBP version 1.0.0
- **/
-.cgrange-label{margin-left: 1em;
+* ConseilGouz Custom Field CG Range for Joomla 4.x/5.x/6.x 
+ *
+ * @author     ConseilgGouz
+* @copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* @license    		: https://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+*/
+
+.cgrange-label, .cgrange-reset, .cgrange-plus, .cgrange-minus {
+/*    margin-left: 1em;*/
     background-color: var(--btn-primary-bg);
 	color: var(--btn-primary-color);
     height: 1.7em;
@@ -13,12 +15,10 @@
     border-radius: 5px;
     padding: 2px 4px 4px 4px;
 }
+.form-cgrange {width:15em}
 /* Ajouter limits dans la classe pour afficher les limites */
 .form-cgrange.limits {
     position: relative;
-}
-.for-cgrange.limits {
-    content: attr(value)
 }
 .form-cgrange.limits:after,
 .form-cgrange:before {
