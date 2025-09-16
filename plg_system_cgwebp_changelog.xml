@@ -3,6 +3,18 @@
 		<element>plg_system_cgwebp</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.4.2</version>
+        <note>
+            <item>Update : 16/09/2025</item>
+        </note>
+        <fix>
+            <item>Use Conseilgouz Library</item>
+        </fix>
+    </changelog>
+	<changelog>
+		<element>plg_system_cgwebp</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.4.1</version>
         <note>
             <item>Update : 25/08/2025</item>
